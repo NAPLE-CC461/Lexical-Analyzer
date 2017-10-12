@@ -9,10 +9,10 @@ int yylex();
 %token IF THEN ELSE WHILE FOR AND OR ASIGNACION EQ ID NUMREAL NEQ
 %token NUMINT PARENTESISLEFT PARENTESISRIGHT PUNTCOM MAS VARIAR CON
 %token MENOS MULTI DIVI EXPO SQRT INICIO FIN FIN_SI FIN_MIENTRAS FIN_PARA MOD
-
+%token END
 %%
 
-programa : INICIO declaraciones FIN ;
+Programa : INICIO declaraciones FIN END;
 
 declaraciones :	declaraciones PUNTCOM declaracion 
 	| declaracion

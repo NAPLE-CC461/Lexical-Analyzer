@@ -3,11 +3,11 @@
 #include <stdio.h>
 #include "lengua.tab.h"
 int numero_linea = 1;
-int FINAL = 0;
 %}
 
 %%
 
+<<EOF>> { return END;}
 ("con") { return CON; }
 ("si")	{ return IF; }
 (":") { return THEN; }
@@ -16,7 +16,7 @@ int FINAL = 0;
 ("mientras")	{ return WHILE; }
 ("para")	{ return FOR; }
 ("INICIO")    { return INICIO; }
-("FIN")       { FINAL = 1; return FIN; } 
+("FIN")       { return FIN; } 
 ("fin_si") { return FIN_SI; }
 ("fin_mientras") { return FIN_MIENTRAS; }
 ("fin_para") { return FIN_PARA; }
@@ -38,13 +38,12 @@ int FINAL = 0;
 ("*")   { return MULTI; }
 ("/")   { return DIVI; }
 ("^")	{ return EXPO; }
-[ \t\f]	;
+[ \t]	;
 \n	{ numero_linea++; }
 .	{ fprintf(stderr, "'%c' (0%o): Error de sintaxis en linea %d\n",yytext[0], yytext[0], numero_linea); }
 %%
 
-
 int yywrap(){
-    return 1;
+	return(1);
 }
 
