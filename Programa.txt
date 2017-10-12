@@ -1,0 +1,16 @@
+INICIO
+X = 10;
+para i = 1 con i!=3 :: i=i+1:
+	X = X + i;
+fin_para
+M = 11;
+mientras M != 12:
+	M = M + 1;
+	X = X + M;
+fin_mientras
+si M != 25:
+	M = M %% 10;
+sino si M != 14:
+	M = M %% 19;
+fin_si
+FIN
