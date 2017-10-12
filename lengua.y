@@ -75,8 +75,9 @@ expresion_booleana : ID EQ ID | ID NEQ ID
 	| PARENTESISLEFT operacionl1 PARENTESISRIGHT EQ PARENTESISLEFT operacionl1 PARENTESISRIGHT | PARENTESISLEFT operacionl1 PARENTESISRIGHT NEQ PARENTESISLEFT operacionl1 PARENTESISRIGHT
 	;
 
-expresion: ID ASIGNACION operacionl1  
-	| ID ASIGNACION ID
+expresion: ID ASIGNACION operacionl1 
+	| ID ASIGNACION ID { $1 = $3; }
+	| ID ASIGNACION PARENTESISLEFT operacionl1 PARENTESISRIGHT
 	;
 
 operacionl1: operacionl1 MAS operacionl2	{ $$ = $1 + $3; }
@@ -98,6 +99,7 @@ operacionl3: operacionl3 EXPO nente  { $$ = pow($1, $3); }
 nente: PARENTESISLEFT operacionl1 PARENTESISRIGHT	{ $$ = $2;}
 	| NUMREAL
 	| NUMINT
+	| ID
 	;
 
 %%

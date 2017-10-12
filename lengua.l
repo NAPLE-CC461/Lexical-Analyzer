@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "lengua.tab.h"
 int numero_linea = 1;
-
+int FINAL = 0;
 %}
 
 %%
@@ -16,7 +16,7 @@ int numero_linea = 1;
 ("mientras")	{ return WHILE; }
 ("para")	{ return FOR; }
 ("INICIO")    { return INICIO; }
-("FIN")       { return FIN; } 
+("FIN")       { FINAL = 1; return FIN; } 
 ("fin_si") { return FIN_SI; }
 ("fin_mientras") { return FIN_MIENTRAS; }
 ("fin_para") { return FIN_PARA; }
@@ -29,7 +29,7 @@ int numero_linea = 1;
 ("%%") { return MOD; }
 [a-zA-Z]([A-Za-z0-9_])*   { return ID; }
 [0-9]+"."[0-9]+	{ return NUMREAL; }
-[1-9]([0-9])*	{ return NUMINT; }
+[1-9]([0-9])*|("0")	{ return NUMINT; }
 ("(")   { return PARENTESISLEFT; }
 (")")   { return PARENTESISRIGHT; }
 (";")	{ return PUNTCOM; }
@@ -44,7 +44,7 @@ int numero_linea = 1;
 %%
 
 
-int yywrap (){
-	 return 1;
+int yywrap(){
+    return 1;
 }
 
