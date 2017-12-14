@@ -1,0 +1,3 @@
+sea fibo(x) = si x <=2 pues 1; sino fibo(x-1)+fibo(x-2);;
+y = 10
+mientras | y >= 2 hacer imprimir(fibo(y)); y=y-1;

@@ -1,0 +1,3 @@
+sea promedio(a,b)=(a+b)/2;
+sea newton(n)=e=1; mientras |((t=n/e)-e)>.001 hacer e=promedio(e,t);;
+newton(15) - raiz(15)
